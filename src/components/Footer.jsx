@@ -2,23 +2,39 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 import logo from '../img/logo.svg'
-import facebook from '../img/social/facebook.svg'
-import instagram from '../img/social/instagram.svg'
-import twitter from '../img/social/twitter.svg'
-import vimeo from '../img/social/vimeo.svg'
+import Facebook from '../img/social/Facebook'
+import Instagram from '../img/social/Instagram'
 
 const Footer = class extends React.Component {
   render() {
     return (
-      <footer className="footer has-background-black has-text-white-ter">
-        <div className="content has-text-centered">
-          <img
-            src={logo}
-            alt="Kaldi"
-            style={{ width: '14em', height: '10em' }}
-          />
+      <footer className="footer">
+        <div className="flex-column" id="contact" >
+          <span><strong>Elbflohmarkt</strong> kontaktieren:</span>
+          <a href="mailto:kontakt@elblohmarkt.com">
+            kontakt@elblohmarkt.com
+          </a>
         </div>
-        <div className="content has-text-centered has-background-black has-text-white-ter">
+        <div id="logo">
+          <a href="#">
+            <img
+              src={logo}
+              alt="Elbflohmarkt"
+            />
+          </a>
+        </div>
+        <div id='socialMedia'>
+          <a title="facebook" href="https://www.facebook.com/profile.php?id=100069239259719">
+            <Facebook alt="Facebook" />
+          </a>
+          <a title="instagram" href="https://instagram.com/elbflohmarkt">
+            <Instagram alt="Instagram" />
+          </a>
+        </div>
+
+
+
+        {/* <div className="content has-text-centered has-background-black has-text-white-ter">
           <div className="container has-background-black has-text-white-ter">
             <div style={{ maxWidth: '100vw' }} className="columns">
               <div className="column is-4">
@@ -106,7 +122,7 @@ const Footer = class extends React.Component {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </footer>
     )
   }

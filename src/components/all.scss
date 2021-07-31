@@ -1,0 +1,381 @@
+// @import "~bulma/sass/utilities/initial-variables"
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+$color-1: #fff;
+$color-2: rgba(0, 0, 0, 1);
+$filter-color1: rgba(117, 74, 49, 0.5);
+$filter-color2: rgba(255, 255, 255, 0.8);
+
+$font-size1: 1rem;
+html,
+body {
+    font-family: Poppins, sans-serif, Georgia, serif;
+    margin: 0;
+    padding: 0;
+}
+
+// Main navigation
+nav {
+    z-index: 99;
+    top: 0;
+    position: sticky;
+    width: 100%;
+    background-color: $color-1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .nav-bar-logo {
+        padding: 1rem;
+        height: 3rem;
+        align-self: flex-start;
+        img {
+            height: 100%;
+        }
+    }
+    .nav-bar-menu {
+        .navbar-item {
+            // display: block;
+            padding: 1rem;
+            text-decoration: none;
+        }
+    }
+    .nav-bar-toggle {
+        cursor: pointer;
+        display: none;
+        border: none;
+        background: none;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        height: 3rem;
+    }
+}
+
+// Hero section
+.hero {
+    text-align: center;
+    overflow: hidden;
+    color: $color-1;
+}
+
+// Flea Market Map Section
+.flea-market-map {
+    justify-content: space-around;
+    padding: 0 2rem;
+
+    a,
+    span {
+        padding: 1rem;
+    }
+}
+// Flea Market Map Section
+.flea-market-map-participants {
+    p {
+        text-align: center;
+    }
+}
+
+// Footer
+.footer {
+    display: flex;
+    padding: 1rem;
+    display: -webkit-flex;
+    align-items: center;
+
+    > * {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        margin: 1rem;
+        padding: 0;
+    }
+
+    img {
+        height: 5rem;
+    }
+
+    #contact {
+        align-items: center;
+    }
+
+    #socialMedia > a {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background-color: $color-2;
+        margin: 0 0.5rem;
+        svg {
+            padding: 0.5rem;
+            fill: $color-1;
+        }
+    }
+}
+
+// Common styles
+h1,
+h3 {
+    text-align: center;
+    transition: font-size 300ms ease;
+}
+h2 {
+    font-size: 3rem;
+    margin-bottom: 0;
+    transition: font-size 300ms ease;
+}
+h3 {
+    transform-origin: top;
+    font-size: 1.5rem;
+    width: 750px;
+}
+h1 {
+    font-size: 4rem;
+}
+.filter {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.filter-color1 {
+    background: $filter-color1;
+}
+.filter-color2 {
+    background: $filter-color2;
+}
+
+.flex-column {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+}
+
+.full-width-image {
+    // width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1,
+h2,
+h3,
+.btn,
+p {
+    z-index: 1;
+}
+
+iframe {
+    transition: height 300ms ease;
+    border: 0;
+    max-height: 200vh;
+    height: 600px;
+    width: calc(100vw - 4rem);
+}
+
+.btn {
+    text-decoration: none;
+    font-size: $font-size1;
+    background: $color-2;
+    border-radius: 3px;
+    color: $color-1;
+    border-style: none;
+    padding: 0.8rem 1.5rem;
+}
+
+@media only screen and (max-width: 800px) {
+    h3 {
+        font-size: 1.2rem;
+        width: 80vw;
+    }
+    iframe {
+        height: 400px;
+    }
+    .footer {
+        flex-direction: column;
+
+        #logo {
+            order: 1;
+            -webkit-order: 1;
+        }
+        #contact {
+            order: 2;
+            -webkit-order: 2;
+        }
+        #socialMedia {
+            order: 3;
+            -webkit-order: 3;
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .nav-bar-menu-active {
+        display: block !important;
+    }
+    .nav-bar-menu {
+        display: none;
+    }
+    .navbar-item {
+        text-align: center;
+        display: block;
+    }
+
+    nav {
+        .nav-bar-toggle {
+            display: block;
+        }
+        flex-direction: column;
+    }
+    h1 {
+        font-size: 3rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    h3 {
+        font-size: 1rem;
+    }
+    iframe {
+        transition: none;
+        height: 50vw;
+    }
+}
+// // Config vars
+// // Kaldi logo brand color: #FD461E
+// $kaldi-red: #D64000
+// $kaldi-red-invert: #fff
+
+// $primary: $kaldi-red
+// $primary-invert: $kaldi-red-invert
+// $body-color: #333
+// $black: #2b2523
+
+// .navbar .navbar-menu
+//   box-shadow:none !important
+
+// .content .taglist
+//   list-style: none
+//   margin-bottom: 0
+//   margin-left: 0
+//   margin-right: 1.5rem
+//   margin-top: 1.5rem
+//   display: flex
+//   flex-wrap: wrap
+//   justify-content: left
+//   align-items: center
+//   li
+//     padding: 0 2rem 1rem 0
+//     margin-bottom: 1.5rem
+//     margin-top: 0
+
+// // Helper Classes
+// .full-width-image-container
+//   width: 100vw
+//   height: 400px
+//   position: relative
+//   left: 50%
+//   right: 50%
+//   margin: 2em -50vw
+//   background-size: cover
+//   background-position: bottom
+//   display: flex
+//   justify-content: center
+//   align-items: center
+
+// .full-width-image
+//     width: 100vw
+//     height: 400px
+//     background-size: cover
+//     background-position: bottom
+//     display: flex
+//     justify-content: center
+//     align-items: center
+
+// .btn
+//     display: inline-block
+//     padding: 12px 16px 10px
+//     font-size: 18px
+//     font-size: 1rem
+//     line-height: 1.25
+//     background-color: #fff
+//     border-radius: .25rem
+//     text-decoration: none
+//     font-weight: 700
+//     color: #CC3700
+//     text-align: center
+//     -webkit-box-shadow: inset 0 0 0 2px #CC3700
+//     box-shadow: inset 0 0 0 2px #f40
+//     -webkit-transition: all .15s ease
+//     transition: all .15s ease
+
+// .margin-top-0
+//   margin-top: 0 !important
+
+// .navbar-item .icon
+//   color: $primary
+// // Override for use of svg's from https://simpleicons.org/
+// .icon svg
+//   width: 1.5rem
+//   height: 1.5rem
+//   fill: currentColor
+// .navbar-brand .navbar-item.logo
+//   padding: 0 1rem
+// footer.footer
+//   padding: 3rem 0rem 0rem
+//   background-color: transparent
+
+// //Menu overrides
+// $menu-item-color: $white-ter
+// $menu-item-hover-color: $black !important
+// $menu-item-hover-background-color: $black
+// $menu-item-active-color: $kaldi-red-invert
+// $menu-item-active-background-color:	$kaldi-red-invert
+// $menu-list-border-left: 1px solid $kaldi-red-invert
+// $menu-label-color: $white-ter
+
+// .menu-label
+//   font-size: 1em !important
+//   text-align: left
+// .menu-list
+//   list-style: none !important
+//   text-align: left
+// .social
+//   padding: 2em
+// .social a
+//     padding: .5em .5em .3em .5em
+//     border-radius: 1em
+//     background-color: $white-ter
+//     margin: .5em
+//     width: 1em
+//     height: 1em
+//     vertical-align: middle
+//     display: inline
+
+// // blog roll
+// .blog-list-item.is-featured
+//   background-color: #d6400033;
+// .blog-list-item header
+//   display: flex;
+//   margin-bottom: 1em;
+// .blog-list-item .featured-thumbnail
+//   flex-basis: 35%;
+//   margin: 0 1.5em 0 0;
+
+// @import "~bulma"
+
+// // responsiveness
+// +tablet-only
+//   .blog-list-item .featured-thumbnail
+//     flex-basis: 50%;
+
+// +mobile
+//   .blog-list-item header
+//     display: block
+//   .blog-list-item .featured-thumbnail
+//     text-align: center;
+//     max-width: 70%;
+//     margin: 0 0 1em;
