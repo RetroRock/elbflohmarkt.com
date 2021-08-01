@@ -38,6 +38,7 @@ collections:
       - {label: "Date Start", name: "dateStart", widget: "datetime"}
       - {label: "Date End", name: "dateEnd", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text"}
+      - {label: Gallery, name: gallery, widget: list, fields: [{label: Image, name: image, widget: image}, {label: Text, name: text, widget: text}]}
       # - {label: "Featured Post", name: "featuredpost", widget: "boolean"}
       # - {label: "Featured Image", name: "featuredimage", widget: image}
       - {label: "Body", name: "body", widget: "markdown"}

@@ -5,12 +5,14 @@ import { Helmet } from 'react-helmet'
 import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 export const TerminTemplate = ({
     //   content,
     //   contentComponent,
     description,
     //   tags,
+    gallery,
     title,
     //   helmet,
 }) => {
@@ -22,6 +24,20 @@ export const TerminTemplate = ({
             <article>
                 {description}
             </article>
+            <ul>
+                {gallery.map(item => {
+                    console.log(item.image.id)
+                    return (
+                        <li key={item.image.id}>
+
+                            <Link to={item.image.publicURL}>
+                                <GatsbyImage image={getImage(item.image.childImageSharp.gatsbyImageData)} alt={item.image.name}></GatsbyImage>
+                            </Link>
+                        </li>
+                    )
+                })}
+
+            </ul>
             {/* {helmet || ''}
       <div className="container content">
         <div className="columns">
@@ -55,18 +71,26 @@ TerminTemplate.propTypes = {
     contentComponent: PropTypes.func,
     description: PropTypes.string,
     title: PropTypes.string,
+    gallery: PropTypes.array,
+    dateStart: PropTypes.string,
+    dateEnd: PropTypes.string,
+    datePublished: PropTypes.string,
     helmet: PropTypes.object,
 }
 
 const Termin = ({ data }) => {
     const { markdownRemark: post } = data
-
+    console.log(data)
     return (
         <Layout>
             <TerminTemplate
                 content={post.html}
                 contentComponent={HTMLContent}
                 description={post.frontmatter.description}
+                dateStart={post.frontmatter.dateStart}
+                dateEnd={post.frontmatter.dateStart}
+                datePublished={post.frontmatter.datePublished}
+                gallery={post.frontmatter.gallery}
                 helmet={
                     <Helmet titleTemplate="%s | Termin">
                         <title>{`${post.frontmatter.title}`}</title>
@@ -103,6 +127,20 @@ export const pageQuery = graphql`
                 dateStart(formatString: "DD.MMMM.YYYY HH:MM")
                 datePublished(formatString: "DD.MMMM.YYYY HH:MM")
                 tags
+                gallery {
+                    text
+                    image {
+                        id
+                        name
+                        publicURL
+                        childImageSharp {
+                            gatsbyImageData(
+                                blurredOptions: {width: 100}
+                                placeholder: BLURRED
+                            )
+                        }
+                    }
+                }
             }
         }
     }

@@ -4,6 +4,9 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
+import { getImage } from "gatsby-plugin-image"
+import { convertToBgImage } from "gbimage-bridge"
+import BackgroundImage from 'gatsby-background-image'
 
 export const IndexPageTemplate = ({
   image,
@@ -15,19 +18,23 @@ export const IndexPageTemplate = ({
   description,
 }) => {
   const PageContent = contentComponent || Content
+  const img = getImage(image),
+    bgImg = convertToBgImage(img),
+    img2 = getImage(image2),
+    bgImg2 = convertToBgImage(img2)
+
   return (
     <div >
       <section className='hero'>
-        <div className="full-width-image" style={{
-          backgroundImage: `url(${!!image.childImageSharp ? image.childImageSharp.fluid.src : image
-            })`,
-          backgroundAttachment: `fixed`,
-        }}>
-          <div className="flex-column flex-cc filter filter-color1">
+        <BackgroundImage Tag="div"
+          {...bgImg}
+          preserveStackingContext>
+          <div className="full-width-image flex-column flex-cc filter filter-color1">
             <h1>{heading}</h1>
             <h3>{description}</h3>
           </div>
-        </div>
+
+        </BackgroundImage>
       </section>
       <section className='flea-market-latest'>
       </section>
@@ -44,16 +51,16 @@ export const IndexPageTemplate = ({
         </span>
       </section>
       <section className="flea-market-map-participants">
-        <div className="full-width-image" style={{
-          backgroundImage: `url(${!!image2.childImageSharp ? image2.childImageSharp.fluid.src : image2
-            })`,
-        }}>
-          <div className="flex-column flex-cc filter filter-color2">
+        <BackgroundImage Tag="div"
+          {...bgImg2}
+          preserveStackingContext>
+          <div className="full-width-image flex-column flex-cc filter filter-color2">
             <h2>Teilnehmer</h2>
             <p>In der verlinkten Karte finden Sie alle Teilnehmer des Flohmarktes.</p>
             <a className="btn" href={maplink}>Karte</a>
           </div>
-        </div>
+
+        </BackgroundImage>
       </section>
     </div >
   )
@@ -116,21 +123,21 @@ query MyQuery {
       maplink
       image {
         childImageSharp {
-          fluid(maxWidth: 2000, quality: 64) {
-            ...GatsbyImageSharpFluid
-          }
+          gatsbyImageData(
+            blurredOptions: {width: 100}
+            placeholder: BLURRED
+          )
         }
       }
       image2 {
         childImageSharp {
-          fluid(maxWidth: 2000, quality: 64) {
-            ...GatsbyImageSharpFluid
-          }
+           gatsbyImageData(
+            blurredOptions: {width: 100}
+            placeholder: BLURRED
+          )
         }
       }
-     
     }
   }
 }
-
 `
