@@ -11,4 +11,3 @@ description: >-
   Diese Seite soll Sie über die Termine und die jeweiligen Teilnehmer informieren.
   Wir wünschen Ihnen einen wünderschönen Bummel durch Lenzen an der Elbe.
 ---
-# This is a heading
