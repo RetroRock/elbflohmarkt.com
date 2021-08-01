@@ -6,6 +6,7 @@ import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
 
 export const TerminTemplate = ({
     //   content,
@@ -19,49 +20,26 @@ export const TerminTemplate = ({
     // const PostContent = contentComponent || Content
 
     return (
-        <section className="section">
-            <h2>{title}</h2>
-            <article>
-                {description}
-            </article>
-            <ul>
-                {gallery.map(item => {
-                    console.log(item.image.id)
-                    return (
-                        <li key={item.image.id}>
-
-                            <Link to={item.image.publicURL}>
-                                <GatsbyImage image={getImage(item.image.childImageSharp.gatsbyImageData)} alt={item.image.name}></GatsbyImage>
-                            </Link>
-                        </li>
-                    )
-                })}
-
-            </ul>
-            {/* {helmet || ''}
-      <div className="container content">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-              {title}
-            </h1>
-            <p>{description}</p>
-            <PostContent content={content} />
-            {tags && tags.length ? (
-              <div style={{ marginTop: `4rem` }}>
-                <h4>Tags</h4>
-                <ul className="taglist">
-                  {tags.map((tag) => (
-                    <li key={tag + `tag`}>
-                      <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-          </div>
-        </div>
-      </div> */}
+        <section className="termin-container">
+            <div className="termin-wrapper">
+                <h2>{title}</h2>
+                <article>
+                    {description}
+                </article>
+                <SimpleReactLightbox>
+                    <SRLWrapper>
+                        <div className="gallery">
+                            {gallery.map(item => {
+                                return (
+                                    <a key={item.image.id} href={item.image.publicURL}>
+                                        <GatsbyImage image={getImage(item.image.childImageSharp.gatsbyImageData)} alt={item.image.name}></GatsbyImage>
+                                    </a>
+                                )
+                            })}
+                        </div>
+                    </SRLWrapper>
+                </SimpleReactLightbox>
+            </div>
         </section>
     )
 }
@@ -80,7 +58,6 @@ TerminTemplate.propTypes = {
 
 const Termin = ({ data }) => {
     const { markdownRemark: post } = data
-    console.log(data)
     return (
         <Layout>
             <TerminTemplate
@@ -135,8 +112,12 @@ export const pageQuery = graphql`
                         publicURL
                         childImageSharp {
                             gatsbyImageData(
+                                height: 600
+                                width: 900
+                                transformOptions: {fit: COVER}
                                 blurredOptions: {width: 100}
                                 placeholder: BLURRED
+                                webpOptions: {quality: 50}
                             )
                         }
                     }

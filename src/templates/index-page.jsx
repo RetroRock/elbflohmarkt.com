@@ -72,19 +72,13 @@ IndexPageTemplate.propTypes = {
   title: PropTypes.string,
   heading: PropTypes.string,
   maplink: PropTypes.string,
-  // subheading: PropTypes.string,
-  // mainpitch: PropTypes.object,
   description: PropTypes.string,
   content: PropTypes.string,
   contentComponent: PropTypes.func,
-  // intro: PropTypes.shape({
-  //   blurbs: PropTypes.array,
-  // }),
 }
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
-  console.log(data)
   return (
     <Layout>
       <IndexPageTemplate

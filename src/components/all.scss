@@ -4,6 +4,7 @@ $color-1: #fff;
 $color-2: rgba(0, 0, 0, 1);
 $filter-color1: rgba(117, 74, 49, 0.5);
 $filter-color2: rgba(255, 255, 255, 0.8);
+$max-content-width: 2000px;
 
 $font-size1: 1rem;
 html,
@@ -75,6 +76,29 @@ nav {
     }
 }
 
+// termin
+.termin-container {
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+
+    .termin-wrapper {
+        max-width: $max-content-width;
+    }
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+    align-content: center;
+    margin: 0;
+    padding: 0;
+    gap: 0.5rem;
+    > * {
+        flex: 1 1 33%;
+    }
+}
+
 // Footer
 .footer {
     display: flex;
@@ -142,6 +166,13 @@ h1 {
     background: $filter-color2;
 }
 
+// .flex-row {
+//     display: flex;
+//     display: -webkit-flex;
+//     // flex-direction: row;
+//     // flex-wrap: wrap;
+// }
+
 .flex-column {
     display: flex;
     display: -webkit-flex;
@@ -187,6 +218,13 @@ iframe {
     iframe {
         height: 400px;
     }
+
+    .gallery {
+        > * {
+            flex: 1 1 50%;
+            // max-width: 200px;
+        }
+    }
     .footer {
         flex-direction: column;
 
@@ -215,6 +253,13 @@ iframe {
     .navbar-item {
         text-align: center;
         display: block;
+    }
+
+    .gallery {
+        > * {
+            flex: 1 1 100%;
+            // max-width: 200px;
+        }
     }
 
     nav {
