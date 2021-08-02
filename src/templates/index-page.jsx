@@ -8,6 +8,8 @@ import { getImage } from "gatsby-plugin-image"
 import { convertToBgImage } from "gbimage-bridge"
 import BackgroundImage from 'gatsby-background-image'
 
+// Use only for cms, remove export otherwise
+// eslint-disable-next-line
 export const IndexPageTemplate = ({
   image,
   image2,

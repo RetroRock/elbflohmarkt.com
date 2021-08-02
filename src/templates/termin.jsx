@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { kebabCase } from 'lodash'
 import { Helmet } from 'react-helmet'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import Content, { HTMLContent } from '../components/Content'
+import { HTMLContent } from '../components/Content'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
 
+// Use only for cms, remove export otherwise
+// eslint-disable-next-line
 export const TerminTemplate = ({
     //   content,
     //   contentComponent,
@@ -18,7 +19,7 @@ export const TerminTemplate = ({
     //   helmet,
 }) => {
     // const PostContent = contentComponent || Content
-
+    console.log(gallery)
     return (
         <section className="termin-container">
             <div className="termin-wrapper">
