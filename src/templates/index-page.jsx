@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
@@ -16,6 +16,7 @@ export const IndexPageTemplate = ({
   heading,
   maplink,
   content,
+  latestDate,
   contentComponent,
   description,
 }) => {
@@ -48,9 +49,12 @@ export const IndexPageTemplate = ({
         <div className="maps">
           <iframe title="Karte von Lenzen" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9582.702803459148!2d11.478644!3d53.098059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47aef608f4b44de7%3A0xebf1f8a12ceb2735!2sLenzen%20(Elbe)%2C%20Deutschland!5e0!3m2!1sde!2sus!4v1627736417337!5m2!1sde!2sus" allowFullScreen="" loading="lazy"></iframe>
         </div>
-        <span className="flea-market-latest-date">
-          <strong>Nächster Termin</strong>: dd:mm:YYYY h1h1:m1m1-h2h2:m2m2 Uhr
-        </span>
+        {latestDate ?
+          <Link to={latestDate.slug} className="flea-market-latest-date">
+            <strong>Nächster Termin</strong>: {latestDate.date}
+          </Link> : <span className="flea-market-latest-date">
+            <strong>Nächster Termin</strong>: Es wurde noch kein neuer Termin vergeben.
+          </span>}
       </section>
       <section className="flea-market-map-participants">
         <BackgroundImage Tag="div"
@@ -61,7 +65,6 @@ export const IndexPageTemplate = ({
             <p>In der verlinkten Karte finden Sie alle Teilnehmer des Flohmarktes.</p>
             <a className="btn" href={maplink}>Karte</a>
           </div>
-
         </BackgroundImage>
       </section>
     </div >
@@ -76,11 +79,18 @@ IndexPageTemplate.propTypes = {
   maplink: PropTypes.string,
   description: PropTypes.string,
   content: PropTypes.string,
+  latestDate: PropTypes.object,
   contentComponent: PropTypes.func,
 }
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
+  const { edges } = data.allMarkdownRemark
+  let latestDate;
+  if (edges.length > 0) {
+    const termin = edges.sort((a, b) => a.node.frontmatter.dateStart - b.node.frontmatter.dateStart).pop()
+    latestDate = { date: new Date(termin.node.frontmatter.dateStart).toLocaleDateString(), slug: termin.node.fields.slug }
+  }
   return (
     <Layout>
       <IndexPageTemplate
@@ -90,6 +100,7 @@ const IndexPage = ({ data }) => {
         heading={frontmatter.heading}
         maplink={frontmatter.maplink}
         description={frontmatter.description}
+        latestDate={latestDate}
         content={data.markdownRemark.html}
         contentComponent={HTMLContent}
       />
@@ -99,6 +110,9 @@ const IndexPage = ({ data }) => {
 
 IndexPage.propTypes = {
   data: PropTypes.shape({
+    allMarkdonwRemark: PropTypes.shape({
+      frontmatter: PropTypes.object,
+    }),
     markdownRemark: PropTypes.shape({
       frontmatter: PropTypes.object,
     }),
@@ -109,6 +123,19 @@ export default IndexPage
 
 export const pageQuery = graphql`
 query MyQuery {
+  allMarkdownRemark(filter: {frontmatter: {templateKey: {eq: "termin"}}}) {
+    edges {
+      node {
+        frontmatter {
+          dateEnd
+          dateStart
+        }
+        fields {
+          slug
+        }
+      }
+    }
+  }
   markdownRemark(frontmatter: {templateKey: {eq: "index-page"}}) {
     id
     html

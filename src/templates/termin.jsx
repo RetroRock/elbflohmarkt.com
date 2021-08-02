@@ -19,7 +19,6 @@ export const TerminTemplate = ({
     //   helmet,
 }) => {
     // const PostContent = contentComponent || Content
-    console.log(gallery)
     return (
         <section className="termin-container">
             <div className="termin-wrapper">
