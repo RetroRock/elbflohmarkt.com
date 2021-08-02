@@ -26,8 +26,8 @@ collections:
       - {label: "Featured Image", name: "featuredimage", widget: image}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Tags", name: "tags", widget: "list"}
-  - name: "termine"
-    label: "Termine"
+  - name: "termin"
+    label: "Termin"
     folder: "src/pages/termine"
     create: true
     slug: "{{year}}-{{month}}-{{day}}"

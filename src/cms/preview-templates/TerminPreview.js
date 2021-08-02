@@ -4,15 +4,15 @@ import { TerminTemplate } from '../../templates/termin'
 
 const TerminPreview = ({ entry, widgetFor }) => {
   const tags = entry.getIn(['data', 'tags'])
-  const gallery = entry.getIn(['data', 'gallery'])
-  console.log(gallery)
+  const entryGallery = entry.getIn(['data', 'gallery'])
+  const gallery = entryGallery ? entryGallery.toJS() : []
   return (
     <TerminTemplate
       content={widgetFor('body')}
       description={entry.getIn(['data', 'description'])}
       tags={tags && tags.toJS()}
       title={entry.getIn(['data', 'title'])}
-      gallery={gallery && gallery.toJS()}
+      gallery={gallery}
       dateStart={entry.getIn(['data', 'dateStart'])}
       dateEnd={entry.getIn(['data', 'dateEnd'])}
       datePublished={entry.getIn(['data', 'datePublished'])}

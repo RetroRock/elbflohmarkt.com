@@ -32,8 +32,8 @@ export const TerminTemplate = ({
                         <div className="gallery">
                             {gallery.map(item => {
                                 return (
-                                    <a key={item.image.id} href={item.image.publicURL}>
-                                        <GatsbyImage image={getImage(item.image.childImageSharp.gatsbyImageData)} alt={item.image.name}></GatsbyImage>
+                                    <a key={item.image?.id ? item.image.id : item.text} href={item.image?.publicURL ? item.image.publicURL : item.image}>
+                                        {item.image?.childImageSharp ? <GatsbyImage image={getImage(item.image.childImageSharp.gatsbyImageData)} alt={item.image.name} /> : <img src={item.image} style={{ width: "100%" }} alt="" />}
                                     </a>
                                 )
                             })}
@@ -41,7 +41,7 @@ export const TerminTemplate = ({
                     </SRLWrapper>
                 </SimpleReactLightbox>
             </div>
-        </section>
+        </section >
     )
 }
 
@@ -50,7 +50,12 @@ TerminTemplate.propTypes = {
     contentComponent: PropTypes.func,
     description: PropTypes.string,
     title: PropTypes.string,
-    gallery: PropTypes.array,
+    gallery: PropTypes.arrayOf(
+        PropTypes.shape({
+            image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+            text: PropTypes.string,
+        })
+    ),
     dateStart: PropTypes.string,
     dateEnd: PropTypes.string,
     datePublished: PropTypes.string,
