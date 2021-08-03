@@ -88,9 +88,6 @@ IndexPageTemplate.propTypes = {
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
   const { edges } = data.allMarkdownRemark
-
-  console.log("Is this running in production?")
-
   let latestDate;
   const edgesCopy = [...edges]
   if (edgesCopy.length > 0) {

@@ -5,7 +5,7 @@ import { Link, graphql, StaticQuery } from 'gatsby'
 const TermineTemplate = ({ data }) => {
   const { edges: termine } = data.allMarkdownRemark
   return (
-    <div>
+    <div style={{ textAlign: 'center' }}>
       {termine.map(({ node: termin }) => (
         <div key={termin.id}><Link to={termin.fields.slug}>Flohmarkt von {termin.frontmatter.dateStart} bis {termin.frontmatter.dateEnd}</Link><br /></div>
       ))}

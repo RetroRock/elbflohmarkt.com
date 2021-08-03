@@ -3,22 +3,22 @@ import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import { HTMLContent } from '../components/Content'
+import Content, { HTMLContent } from '../components/Content'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
 
 // Use only for cms, remove export otherwise
 // eslint-disable-next-line
 export const TerminTemplate = ({
-    //   content,
-    //   contentComponent,
+    content,
+    contentComponent,
     description,
     //   tags,
     gallery,
     title,
     //   helmet,
 }) => {
-    // const PostContent = contentComponent || Content
+    const PostContent = contentComponent || Content
     return (
         <section className="termin-container">
             <div className="termin-wrapper">
@@ -26,13 +26,21 @@ export const TerminTemplate = ({
                 <article>
                     {description}
                 </article>
+                <div className="termin-content">
+                    < PostContent style={{ width: '100%', overflow: 'hidden' }} content={content} />
+                </div>
+                <h2 id="galleryHeading">Galerie</h2>
                 <SimpleReactLightbox>
                     <SRLWrapper>
                         <div className="gallery">
                             {gallery.map(item => {
                                 return (
-                                    <a key={item.image?.id ? item.image.id : item.text} href={item.image?.publicURL ? item.image.publicURL : item.image}>
-                                        {item.image?.childImageSharp ? <GatsbyImage image={getImage(item.image.childImageSharp.gatsbyImageData)} alt={item.image.name} /> : <img src={item.image} style={{ width: "100%" }} alt="" />}
+                                    <a key={item.image?.id ? item.image.id : item.text}
+                                        href={item.image?.publicURL ? item.image.publicURL : item.image}>
+                                        {item.image?.childImageSharp ?
+                                            <GatsbyImage
+                                                image={getImage(item.image.childImageSharp.gatsbyImageData)}
+                                                alt={item.text} /> : <img src={item.image} style={{ width: "100%" }} alt="" />}
                                     </a>
                                 )
                             })}
