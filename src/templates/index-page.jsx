@@ -26,6 +26,8 @@ export const IndexPageTemplate = ({
     img2 = getImage(image2),
     bgImg2 = convertToBgImage(img2)
 
+
+
   return (
     <div >
       <section className='hero'>
@@ -86,11 +88,16 @@ IndexPageTemplate.propTypes = {
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
   const { edges } = data.allMarkdownRemark
+
+  console.log("Is this running in production?")
+
   let latestDate;
-  if (edges.length > 0) {
-    const termin = edges.sort((a, b) => a.node.frontmatter.dateStart - b.node.frontmatter.dateStart).pop()
+  const edgesCopy = [...edges]
+  if (edgesCopy.length > 0) {
+    const termin = edgesCopy.sort((a, b) => a.node.frontmatter.dateStart - b.node.frontmatter.dateStart).pop()
     latestDate = { date: new Date(termin.node.frontmatter.dateStart).toLocaleDateString(), slug: termin.node.fields.slug }
   }
+
   return (
     <Layout>
       <IndexPageTemplate
