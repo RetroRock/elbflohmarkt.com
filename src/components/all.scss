@@ -37,26 +37,32 @@ nav {
         }
     }
     .nav-bar-menu {
-        margin: 1rem;
-        .navbar-item {
-            padding: 0.5rem 1rem;
+        margin: 0 1rem 0 0;
+
+        .nav-bar-item-wrapper {
+            display: initial;
+            padding: 0 0.1rem;
             text-decoration: none;
-            color: $color-3;
-            background-color: $color-1;
-            transition: color 300ms ease, background-color 300ms ease;
-            font-weight: 900;
-            list-style: none;
-            border-radius: 10px;
-            border: 3px solid $color-1;
+
+            .nav-bar-item {
+                padding: 0.375rem 0.75rem;
+                color: $color-3;
+                background-color: $color-1;
+                transition: color 300ms ease, background-color 300ms ease;
+                font-weight: 900;
+                border-radius: 10px;
+            }
             &:hover {
+                .nav-bar-item {
+                    color: $color-1;
+                    background-color: $color-3;
+                }
+            }
+
+            .nav-bar-item-active {
                 color: $color-1;
                 background-color: $color-3;
             }
-        }
-
-        .nav-bar-item-active {
-            color: $color-1;
-            background-color: $color-3;
         }
     }
     .nav-bar-toggle {
@@ -280,10 +286,9 @@ iframe {
     }
     .nav-bar-menu {
         display: none;
-        // margin-bottom: 1rem;
-        // height: 200px;
     }
-    .navbar-item {
+
+    .nav-bar-item {
         text-align: center;
         display: block;
         padding: 1rem !important;

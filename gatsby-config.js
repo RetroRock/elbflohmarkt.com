@@ -3,7 +3,7 @@ module.exports = {
     title: 'Elbflohmarkt Lenzen',
     description:
       'Der Flohmarkt in Lenzen (Elbe) findet zweimal jährlich statt.',
-      // TODO Change this later on to https://elbflohmarkt.com
+    // TODO Change this later on to https://elbflohmarkt.com
     siteUrl: 'https://next.elbflohmarkt.com'
   },
   plugins: [
@@ -12,11 +12,10 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-sass',
     {
-      // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/static/img`,
-        name: 'uploads',
+        name: 'staticImages',
       },
     },
     {
@@ -58,7 +57,7 @@ module.exports = {
           {
             resolve: 'gatsby-remark-copy-linked-files',
             options: {
-              destinationDir: 'static',
+              destinationDir: 'src/img',
             },
           },
         ],
