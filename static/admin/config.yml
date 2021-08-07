@@ -12,39 +12,7 @@ media_folder: static/img
 public_folder: ../../../static/img
 
 collections:
-  - name: "blog"
-    label: "Blog"
-    folder: "src/pages/blog"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Description", name: "description", widget: "text"}
-      # - {label: "Featured Post", name: "featuredpost", widget: "boolean"}
-      - {label: "Featured Image", name: "featuredimage", widget: image}
-      - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Tags", name: "tags", widget: "list"}
-  - name: "termin"
-    label: "Termin"
-    folder: "src/pages/termine"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}"
-    fields:
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "termin"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "datePublished", widget: "datetime"}
-      - {label: "Date Start", name: "dateStart", widget: "datetime"}
-      - {label: "Date End", name: "dateEnd", widget: "datetime"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: Gallery, name: gallery, widget: list, fields: [{label: Image, name: image, widget: image}, {label: Text, name: text, widget: text}]}
-      # - {label: "Featured Post", name: "featuredpost", widget: "boolean"}
-      # - {label: "Featured Image", name: "featuredimage", widget: image}
-        # - {label: Intro, name: intro, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: text}, {label: Blurbs, name: blurbs, widget: list, fields: [{label: Image, name: image, widget: image}, {label: Text, name: text, widget: text}]}]}
-
-      - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Tags", name: "tags", widget: "list"}
+  
   - name: "pages"
     label: "Pages"
     files:
@@ -71,3 +39,36 @@ collections:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about-page"}
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Body", name: "body", widget: "markdown"}
+      - name: "blog"
+        label: "Blog"
+        folder: "src/pages/blog"
+        create: true
+        slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Publish Date", name: "date", widget: "datetime"}
+          - {label: "Description", name: "description", widget: "text"}
+          # - {label: "Featured Post", name: "featuredpost", widget: "boolean"}
+          - {label: "Featured Image", name: "featuredimage", widget: image}
+          - {label: "Body", name: "body", widget: "markdown"}
+          - {label: "Tags", name: "tags", widget: "list"}
+      - name: "termin"
+        label: "Termin"
+        folder: "src/pages/termine"
+        create: true
+        slug: "{{year}}-{{month}}-{{day}}"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "termin"}
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Publish Date", name: "datePublished", widget: "datetime"}
+          - {label: "Date Start", name: "dateStart", widget: "datetime"}
+          - {label: "Date End", name: "dateEnd", widget: "datetime"}
+          - {label: "Description", name: "description", widget: "text"}
+          - {label: Gallery, name: gallery, widget: list, fields: [{label: Image, name: image, widget: image}, {label: Text, name: text, widget: text}]}
+          # - {label: "Featured Post", name: "featuredpost", widget: "boolean"}
+          # - {label: "Featured Image", name: "featuredimage", widget: image}
+            # - {label: Intro, name: intro, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: text}, {label: Blurbs, name: blurbs, widget: list, fields: [{label: Image, name: image, widget: image}, {label: Text, name: text, widget: text}]}]}
+
+          - {label: "Body", name: "body", widget: "markdown"}
+          - {label: "Tags", name: "tags", widget: "list"}

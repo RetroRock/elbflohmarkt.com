@@ -6,6 +6,8 @@ import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
+import UpdateIcon from "../img/update.svg"
+import DateIcon from "../img/date.svg"
 
 // Use only for cms, remove export otherwise
 // eslint-disable-next-line
@@ -13,16 +15,27 @@ export const TerminTemplate = ({
     content,
     contentComponent,
     description,
-    //   tags,
+    datePublished,
+    dateStart,
+    dateEnd,
     gallery,
     title,
-    //   helmet,
 }) => {
     const PostContent = contentComponent || Content
     return (
         <section className="termin-container">
             <div className="termin-wrapper">
                 <h2>{title}</h2>
+                <div className="termin-meta-wrapper">
+                    <span title="Termin" className="termin-meta">
+                        <img src={DateIcon} alt="" />
+                        {dateStart} - {dateEnd}
+                    </span>
+                    <div title="Zuletzt aktualisiert" className="termin-meta">
+                        <img src={UpdateIcon} alt="" />
+                        Zuletzt aktualisiert: {datePublished}
+                    </div>
+                </div>
                 <article>
                     {description}
                 </article>

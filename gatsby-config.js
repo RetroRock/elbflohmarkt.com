@@ -35,6 +35,7 @@ module.exports = {
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
+    'gatsby-plugin-catch-links',
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -51,7 +52,7 @@ module.exports = {
               // It's important to specify the maxWidth (in pixels) of
               // the content container as this plugin uses this as the
               // base for generating different widths of each image.
-              maxWidth: 2048,
+              maxWidth: 2000,
             },
           },
           {

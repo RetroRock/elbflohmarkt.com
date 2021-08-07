@@ -26,8 +26,6 @@ export const IndexPageTemplate = ({
     img2 = getImage(image2),
     bgImg2 = convertToBgImage(img2)
 
-
-
   return (
     <div >
       <section className='hero'>
@@ -90,6 +88,7 @@ const IndexPage = ({ data }) => {
   const { edges } = data.allMarkdownRemark
   let latestDate;
   const edgesCopy = [...edges]
+  console.debug(edgesCopy.sort((a, b) => a.node.frontmatter.dateStart - b.node.frontmatter.dateStart))
   if (edgesCopy.length > 0) {
     const termin = edgesCopy.sort((a, b) => a.node.frontmatter.dateStart - b.node.frontmatter.dateStart).pop()
     latestDate = { date: new Date(termin.node.frontmatter.dateStart).toLocaleDateString(), slug: termin.node.fields.slug }
