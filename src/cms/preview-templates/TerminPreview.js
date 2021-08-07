@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { TerminTemplate } from '../../templates/termin'
+import { getFormattedDateString } from '../../utils'
 
 const TerminPreview = ({ entry, widgetFor }) => {
   const tags = entry.getIn(['data', 'tags'])
   const entryGallery = entry.getIn(['data', 'gallery'])
   const gallery = entryGallery ? entryGallery.toJS() : []
+
   return (
     <TerminTemplate
       content={widgetFor('body')}
@@ -13,9 +15,9 @@ const TerminPreview = ({ entry, widgetFor }) => {
       tags={tags && tags.toJS()}
       title={entry.getIn(['data', 'title'])}
       gallery={gallery}
-      dateStart={entry.getIn(['data', 'dateStart'])}
-      dateEnd={entry.getIn(['data', 'dateEnd'])}
-      datePublished={entry.getIn(['data', 'datePublished'])}
+      dateStart={getFormattedDateString(entry.getIn(['data', 'dateStart']))}
+      dateEnd={getFormattedDateString(entry.getIn(['data', 'dateEnd']))}
+      datePublished={getFormattedDateString(entry.getIn(['data', 'datePublished']))}
     />
   )
 }

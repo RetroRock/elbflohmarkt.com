@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { getFormattedDateString } from '../utils'
 
 const TermineTemplate = ({ data }) => {
   const { edges: termine } = data.allMarkdownRemark
@@ -18,8 +19,8 @@ const TermineTemplate = ({ data }) => {
               <h3>{termin.frontmatter.title}</h3>
               <p>{termin.frontmatter.description}</p>
               <p>
-                Start: <strong>{termin.frontmatter.dateStart}</strong><br />
-                Ende: <strong>{termin.frontmatter.dateEnd}</strong><br />
+                Start: <strong>{getFormattedDateString(new Date(termin.frontmatter.dateStart))}</strong><br />
+                Ende: <strong>{getFormattedDateString(new Date(termin.frontmatter.dateEnd))}</strong><br />
               </p>
               <Link to={termin.fields.slug}>Mehr Informationen</Link>
 

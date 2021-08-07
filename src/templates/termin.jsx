@@ -8,6 +8,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
 import UpdateIcon from "../img/update.svg"
 import DateIcon from "../img/date.svg"
+import { getFormattedDateString } from '../utils'
 
 // Use only for cms, remove export otherwise
 // eslint-disable-next-line
@@ -29,11 +30,11 @@ export const TerminTemplate = ({
                 <div className="termin-meta-wrapper">
                     <span title="Termin" className="termin-meta">
                         <img src={DateIcon} alt="" />
-                        {dateStart} - {dateEnd}
+                        {getFormattedDateString(new Date(dateStart))} - {getFormattedDateString(new Date(dateEnd))}
                     </span>
                     <div title="Zuletzt aktualisiert" className="termin-meta">
                         <img src={UpdateIcon} alt="" />
-                        Zuletzt aktualisiert: {datePublished}
+                        Zuletzt aktualisiert: {getFormattedDateString(new Date(datePublished))}
                     </div>
                 </div>
                 <article>

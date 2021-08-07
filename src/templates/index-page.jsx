@@ -7,6 +7,7 @@ import Content, { HTMLContent } from '../components/Content'
 import { getImage } from "gatsby-plugin-image"
 import { convertToBgImage } from "gbimage-bridge"
 import BackgroundImage from 'gatsby-background-image'
+import { getFormattedDateString } from '../utils'
 
 // Use only for cms, remove export otherwise
 // eslint-disable-next-line
@@ -26,18 +27,33 @@ export const IndexPageTemplate = ({
     img2 = getImage(image2),
     bgImg2 = convertToBgImage(img2)
 
+  const heroChildren =
+    <div className="full-width-image flex-column flex-cc filter filter-color1">
+      <h1>{heading}</h1>
+      <h3>{description}</h3>
+    </div>
+
+  const fleaMarketMapParticipantsChildren = <div className="full-width-image flex-column flex-cc filter filter-color2">
+    <h2>Teilnehmer</h2>
+    <p>In der verlinkten Karte finden Sie alle Teilnehmer des Flohmarktes.</p>
+    <a className="btn" href={maplink}>Karte</a>
+  </div>
+
   return (
     <div >
       <section className='hero'>
-        <BackgroundImage Tag="div"
-          {...bgImg}
-          preserveStackingContext>
-          <div className="full-width-image flex-column flex-cc filter filter-color1">
-            <h1>{heading}</h1>
-            <h3>{description}</h3>
-          </div>
+        {bgImg ?
+          <BackgroundImage Tag="div"
+            {...bgImg}
+            preserveStackingContext>
+            {heroChildren}
+          </BackgroundImage>
 
-        </BackgroundImage>
+          :
+          <div style={{ background: `url(${image.url})`, backgroundSize: "cover", backgroundPosition: "center" }} >
+            {heroChildren}
+          </div>
+        }
       </section>
       <section className='flea-market-latest'>
       </section>
@@ -57,15 +73,19 @@ export const IndexPageTemplate = ({
           </span>}
       </section>
       <section className="flea-market-map-participants">
-        <BackgroundImage Tag="div"
-          {...bgImg2}
-          preserveStackingContext>
-          <div className="full-width-image flex-column flex-cc filter filter-color2">
-            <h2>Teilnehmer</h2>
-            <p>In der verlinkten Karte finden Sie alle Teilnehmer des Flohmarktes.</p>
-            <a className="btn" href={maplink}>Karte</a>
+
+        {bgImg2 ?
+
+          <BackgroundImage Tag="div"
+            {...bgImg2}
+            preserveStackingContext>
+            {fleaMarketMapParticipantsChildren}
+          </BackgroundImage>
+          :
+          <div style={{ background: `url(${image2.url})`, backgroundSize: "cover", backgroundPosition: "center" }} >
+            {fleaMarketMapParticipantsChildren}
           </div>
-        </BackgroundImage>
+        }
       </section>
     </div >
   )
@@ -91,7 +111,7 @@ const IndexPage = ({ data }) => {
   console.debug(edgesCopy.sort((a, b) => a.node.frontmatter.dateStart - b.node.frontmatter.dateStart))
   if (edgesCopy.length > 0) {
     const termin = edgesCopy.sort((a, b) => a.node.frontmatter.dateStart - b.node.frontmatter.dateStart).pop()
-    latestDate = { date: new Date(termin.node.frontmatter.dateStart).toLocaleDateString(), slug: termin.node.fields.slug }
+    latestDate = { date: getFormattedDateString(new Date(termin.node.frontmatter.dateStart)), slug: termin.node.fields.slug }
   }
 
   return (
