@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { navigate } from 'gatsby-link'
 import Layout from '../../components/Layout'
+import { googleRecaptchaKey } from '../../utils'
 
 const encode = (data) =>
   Object.keys(data)
@@ -22,6 +23,7 @@ const Kontakt = () => {
         method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({
           'form-name': _form.getAttribute("name"),
+          "g-recaptcha": googleRecaptchaKey,
           ..._form
         })
       })
@@ -41,18 +43,18 @@ const Kontakt = () => {
             method="post"
             action="/kontakt/thanks/"
             data-netlify-recaptcha="true"
-            netlify-honeypot="bot-field"
+            // netlify-honeypot="bot-field"
             data-netlify="true"
             onSubmit={handleSubmit}
           >
             {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
             <input type="hidden" name="form-name" value="contact" />
-            <div hidden>
+            {/* <div hidden>
               <label>
                 Don’t fill this out:{' '}
                 <input name="bot-field" onChange={handleChange} />
               </label>
-            </div>
+            </div> */}
             <div className="field">
               <label className="label" htmlFor={'name'}>
                 Name
@@ -117,7 +119,7 @@ const Kontakt = () => {
                 />
               </div>
             </div>
-            <div data-netlify-recaptcha="true"></div>
+            <div className="g-recaptcha" data-sitekey={googleRecaptchaKey}></div><br />
             <div className="field">
               <button className="btn" type="submit">
                 Absenden
