@@ -13,10 +13,8 @@ export default class TermineIndexPage extends React.Component {
                     </h1>
                 </div>
                 <section >
-                    <div >
-                        <div className="content">
-                            <Termine />
-                        </div>
+                    <div className="content">
+                        <Termine />
                     </div>
                 </section>
             </Layout>

@@ -41,12 +41,6 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: 'gatsby-remark-relative-images',
-            options: {
-              name: 'uploads',
-            },
-          },
-          {
             resolve: 'gatsby-remark-images',
             options: {
               // It's important to specify the maxWidth (in pixels) of
@@ -64,6 +58,17 @@ module.exports = {
           },
         ],
       },
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts-v2`,
+      options: {
+        fonts: [
+          {
+            family: 'Poppins',
+            weights: ['300']
+          }
+        ]
+      }
     },
     {
       resolve: 'gatsby-plugin-netlify-cms',

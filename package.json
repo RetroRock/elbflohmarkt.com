@@ -8,6 +8,7 @@
     "gatsby-background-image": "^1.5.3",
     "gatsby-image": "^2.3.5",
     "gatsby-plugin-catch-links": "^3.11.0",
+    "gatsby-plugin-google-fonts-v2": "^1.0.0",
     "gatsby-plugin-image": "^1.10.1",
     "gatsby-plugin-netlify": "^3.10.0",
     "gatsby-plugin-netlify-cms": "^5.10.0",
