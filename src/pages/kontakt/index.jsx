@@ -10,21 +10,22 @@ const encode = (data) =>
 const Kontakt = () => {
   const [form, setForm] = useState({ isValidated: false })
 
-  const handleChange = (e) => setForm({ [e.target.name]: e.target.value })
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const form = e.target
+    const _form = e.target
     try {
-
       await fetch("/", {
         method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({
-          'form-name': form.getAttribute("name"),
-          ...form
+          'form-name': _form.getAttribute("name"),
+          ..._form
         })
       })
-      navigate(form.getAttribute("action"))
+      navigate(_form.getAttribute("action"))
     } catch (error) {
       alert(error)
     }
@@ -39,8 +40,9 @@ const Kontakt = () => {
             name="contact-form"
             method="post"
             action="/kontakt/thanks/"
+            data-netlify-recaptcha="true"
+            netlify-honeypot="bot-field"
             data-netlify="true"
-            data-netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
           >
             {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
