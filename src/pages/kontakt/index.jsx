@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { navigate } from 'gatsby-link'
 import Layout from '../../components/Layout'
-import { googleRecaptchaKey } from '../../utils'
+// import { googleRecaptchaKey } from '../../utils'
 
 const encode = (data) =>
   Object.keys(data)
@@ -23,8 +23,8 @@ const Kontakt = () => {
         method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({
           'form-name': _form.getAttribute("name"),
-          "g-recaptcha": googleRecaptchaKey,
-          ..._form
+          // "g-recaptcha": googleRecaptchaKey,
+          ...form
         })
       })
       navigate(_form.getAttribute("action"))
@@ -41,8 +41,8 @@ const Kontakt = () => {
           <form
             name="contact-form"
             method="post"
-            action="/kontakt/thanks/"
-            data-netlify-recaptcha="true"
+            action="/kontakt/danke"
+            // data-netlify-recaptcha="true"
             // netlify-honeypot="bot-field"
             data-netlify="true"
             onSubmit={handleSubmit}
@@ -50,11 +50,11 @@ const Kontakt = () => {
             {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
             <input type="hidden" name="form-name" value="contact" />
             {/* <div hidden>
-              <label>
-                Don’t fill this out:{' '}
-                <input name="bot-field" onChange={handleChange} />
-              </label>
-            </div> */}
+                <label>
+                  Don’t fill this out:{' '}
+                  <input name="bot-field" onChange={handleChange} />
+                </label>
+              </div> */}
             <div className="field">
               <label className="label" htmlFor={'name'}>
                 Name
@@ -119,7 +119,7 @@ const Kontakt = () => {
                 />
               </div>
             </div>
-            <div className="g-recaptcha" data-sitekey={googleRecaptchaKey}></div><br />
+            {/* <div className="g-recaptcha" data-sitekey={googleRecaptchaKey}></div><br /> */}
             <div className="field">
               <button className="btn" type="submit">
                 Absenden
