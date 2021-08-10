@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { navigate } from 'gatsby-link'
 import Layout from '../../components/Layout'
-// import { googleRecaptchaKey } from '../../utils'
+import { googleRecaptchaKey } from '../../utils'
 
 const encode = (data) =>
   Object.keys(data)
@@ -42,7 +42,7 @@ const Kontakt = () => {
             name="contact-form"
             method="post"
             action="/kontakt/danke"
-            // data-netlify-recaptcha="true"
+            data-netlify-recaptcha="true"
             // netlify-honeypot="bot-field"
             data-netlify="true"
             onSubmit={handleSubmit}
@@ -119,7 +119,7 @@ const Kontakt = () => {
                 />
               </div>
             </div>
-            {/* <div className="g-recaptcha" data-sitekey={googleRecaptchaKey}></div><br /> */}
+            <div className="g-recaptcha" data-sitekey={googleRecaptchaKey}></div><br />
             <div className="field">
               <button className="btn" type="submit">
                 Absenden
