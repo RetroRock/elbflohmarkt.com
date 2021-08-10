@@ -39,7 +39,7 @@ const Kontakt = () => {
         <div className="contact-form-wrapper">
           <h1>Kontakt</h1>
           <form
-            name="contact"
+            name="contact-form"
             method="post"
             action="/kontakt/danke"
             data-netlify-recaptcha="true"
@@ -48,7 +48,7 @@ const Kontakt = () => {
             onSubmit={handleSubmit}
           >
             {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
-            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="form-name" value="contact-form" />
             {/* <div hidden>
                 <label>
                   Don’t fill this out:{' '}
