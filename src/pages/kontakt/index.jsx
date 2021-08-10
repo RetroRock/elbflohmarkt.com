@@ -23,7 +23,7 @@ const Kontakt = () => {
         method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({
           'form-name': _form.getAttribute("name"),
-          // "g-recaptcha": googleRecaptchaKey,
+          "g-recaptcha": googleRecaptchaKey,
           ...form
         })
       })
@@ -39,7 +39,7 @@ const Kontakt = () => {
         <div className="contact-form-wrapper">
           <h1>Kontakt</h1>
           <form
-            name="contact-form"
+            name="contact"
             method="post"
             action="/kontakt/danke"
             data-netlify-recaptcha="true"
