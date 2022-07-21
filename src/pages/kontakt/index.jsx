@@ -43,18 +43,10 @@ const Kontakt = () => {
             method="post"
             action="/kontakt/danke"
             data-netlify-recaptcha="true"
-            // netlify-honeypot="bot-field"
             data-netlify="true"
             onSubmit={handleSubmit}
           >
-            {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
             <input type="hidden" name="form-name" value="contact-form" />
-            {/* <div hidden>
-                <label>
-                  Don’t fill this out:{' '}
-                  <input name="bot-field" onChange={handleChange} />
-                </label>
-              </div> */}
             <div className="field">
               <label className="label" htmlFor={'name'}>
                 Name

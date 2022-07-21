@@ -49,6 +49,7 @@ const TemplateWrapper = ({ children }) => {
         />
       </Helmet>
       <Navbar />
+      <div className='site-no-longer-maintained'>Achtung: Diese Seite wird nicht mehr gepflegt</div>
       <div>{children}</div>
       <Footer />
     </div>

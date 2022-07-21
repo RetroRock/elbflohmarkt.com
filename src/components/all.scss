@@ -84,6 +84,20 @@ nav {
     }
 }
 
+// No longer maintained
+.site-no-longer-maintained {
+    top: 6rem;
+    background-color: $color-1;
+    z-index: 99;
+    text-align: center;
+    position: sticky;
+    margin: 1rem;
+    font-weight: bold;
+    font-style: italic;
+    border: 2px solid $color-3;
+    padding: 2rem 0;
+}
+
 // Hero section
 .hero {
     text-align: center;
